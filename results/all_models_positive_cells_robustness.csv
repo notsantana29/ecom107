@@ -1,0 +1,9 @@
+forecast,Model,cell,R2,CWp,R2_drop5,CWp_drop5,survives
+raw,PCR,Full,0.23,0.033,-1.88,0.227,False
+CT,PCR,Full,0.43,0.025,-0.17,0.101,False
+CT,PCR,NBER_exp,0.35,0.031,-0.29,0.126,False
+CT,Ridge,Full,0.36,0.047,-0.22,0.197,False
+CT,LASSO,Full,0.51,0.034,-0.12,0.164,False
+CT,LASSO,NBER_exp,0.47,0.041,-0.31,0.218,False
+CT,Mean,Full,0.75,0.008,-0.05,0.064,False
+CT,Mean,NBER_exp,0.63,0.015,-0.39,0.137,False

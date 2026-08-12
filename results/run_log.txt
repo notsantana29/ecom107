@@ -1,0 +1,121 @@
+=== MODEL COMPARISON on THEIR forecasts (R2_OOS %, [CW p]) — should match published ===
+  OLS     -12.68  [0.270]
+  Ridge   -1.18  [0.180]
+  LASSO   -1.37  [0.212]
+  ENet    -1.42  [0.226]
+  RF      -7.17  [0.447]
+  XGB     -34.95  [0.261]
+  GBRT    -14.45  [0.129]
+  NN3     -17.33  [0.144]
+  Mean    -1.58  [0.271]
+  Median  -1.03  [0.389]
+
+=== REGIME on their Ridge/RF/XGB/Mean ===
+NBER (rec/exp) — regime cut is NBER only, as in Xu & Liu Table 2:
+  PCR   +2.44 / -0.51
+  Ridge -2.93 / -0.60
+  RF    -8.42 / -6.75
+  XGB   -38.34 / -33.82
+  Mean  -5.74 / -0.19
+
+=== CT TRUNCATION on their models ===
+  Ridge raw -1.181 [0.180]   +CT +0.363 [0.047]
+  RF    raw -7.165 [0.447]   +CT -3.139 [0.181]
+  XGB   raw -34.950 [0.261]   +CT -21.742 [0.026]
+  Mean  raw -1.580 [0.271]   +CT +0.746 [0.008]
+  Ridge+CT positive in 3/3 regime cells
+
+=== ECONOMIC VALUE ===
+  Ridge CER gain: +1.28% ann
+
+=== OVERFITTING ANATOMY (their in-sample vs their OOS) ===
+  XGB   in-sample +45.06  OOS -34.95  gap 80.01pp  calib +0.047
+  Ridge in-sample +2.65  OOS -1.18  gap 3.83pp  calib +0.285
+Saved forecasts/oos_forecasts_xl.csv, sample_splits.csv, summary_stats.csv
+=== RAW forecasts: R2 [CW p] per cell (all models) ===
+PCR     Full:+0.23[0.03]  NBER_rec:+2.44[0.11]  NBER_exp:-0.51[0.06]
+Ridge   Full:-1.18[0.18]  NBER_rec:-2.93[0.27]  NBER_exp:-0.60[0.19]
+LASSO   Full:-1.37[0.21]  NBER_rec:-4.65[0.36]  NBER_exp:-0.28[0.11]
+ENet    Full:-1.42[0.23]  NBER_rec:-4.38[0.36]  NBER_exp:-0.42[0.15]
+PLS     Full:-5.19[0.28]  NBER_rec:-7.18[0.38]  NBER_exp:-4.52[0.28]
+OLS     Full:-12.68[0.27]  NBER_rec:-21.13[0.48]  NBER_exp:-9.86[0.19]
+RF      Full:-7.17[0.45]  NBER_rec:-8.42[0.74]  NBER_exp:-6.75[0.19]
+GBRT    Full:-14.45[0.13]  NBER_rec:-17.62[0.49]  NBER_exp:-13.40[0.02]
+XGB     Full:-34.95[0.26]  NBER_rec:-38.34[0.80]  NBER_exp:-33.82[0.04]
+NN3     Full:-17.33[0.14]  NBER_rec:-23.42[0.82]  NBER_exp:-15.30[0.04]
+Mean    Full:-1.58[0.27]  NBER_rec:-5.74[0.55]  NBER_exp:-0.19[0.05]
+Median  Full:-1.03[0.39]  NBER_rec:-3.71[0.51]  NBER_exp:-0.13[0.25]
+
+=== CT truncation: R2 [CW p] per cell (all models) ===
+PCR     Full:+0.43[0.03]  NBER_rec:+0.67[0.21]  NBER_exp:+0.35[0.03]
+Ridge   Full:+0.36[0.05]  NBER_rec:+1.19[0.14]  NBER_exp:+0.09[0.10]
+LASSO   Full:+0.51[0.03]  NBER_rec:+0.63[0.24]  NBER_exp:+0.47[0.04]
+ENet    Full:+0.29[0.07]  NBER_rec:+0.14[0.34]  NBER_exp:+0.34[0.06]
+PLS     Full:-1.26[0.09]  NBER_rec:+1.71[0.10]  NBER_exp:-2.25[0.23]
+OLS     Full:-2.83[0.13]  NBER_rec:+1.78[0.10]  NBER_exp:-4.37[0.28]
+RF      Full:-3.14[0.18]  NBER_rec:+0.10[0.39]  NBER_exp:-4.22[0.19]
+GBRT    Full:-9.28[0.03]  NBER_rec:-1.17[0.56]  NBER_exp:-11.99[0.03]
+XGB     Full:-21.74[0.03]  NBER_rec:-7.60[0.56]  NBER_exp:-26.47[0.01]
+NN3     Full:-3.08[0.23]  NBER_rec:-2.17[0.66]  NBER_exp:-3.39[0.16]
+Mean    Full:+0.75[0.01]  NBER_rec:+1.10[0.14]  NBER_exp:+0.63[0.01]
+Median  Full:+0.40[0.07]  NBER_rec:+0.69[0.23]  NBER_exp:+0.30[0.10]
+
+=== Every positive & 5%-significant cell — does it survive dropping top-5 crash months? ===
+forecast Model     cell   R2   CWp  R2_drop5  CWp_drop5  survives
+     raw   PCR     Full 0.23 0.033     -1.88      0.227     False
+      CT   PCR     Full 0.43 0.025     -0.17      0.101     False
+      CT   PCR NBER_exp 0.35 0.031     -0.29      0.126     False
+      CT Ridge     Full 0.36 0.047     -0.22      0.197     False
+      CT LASSO     Full 0.51 0.034     -0.12      0.164     False
+      CT LASSO NBER_exp 0.47 0.041     -0.31      0.218     False
+      CT  Mean     Full 0.75 0.008     -0.05      0.064     False
+      CT  Mean NBER_exp 0.63 0.015     -0.39      0.137     False
+
+Of 8 positive+significant cells, 0 survive the crash-robustness check.
+Saved: all_models_regime_cw.csv, all_models_regime_cw_CT.csv, all_models_positive_cells_robustness.csv
+Family size (cells with a valid CW test): 72
+
+Positive & CW-significant at 5% (nominal): 8 cells
+
+=== Multiplicity-adjusted significance of the 8 positive & significant cells ===
+cell                             R2   raw p    Holm   BH-FDR      RW
+Mean+CT/Full                  +0.75   0.008   0.544    0.223   0.227
+Mean+CT/NBER_exp              +0.63   0.015   1.000    0.223   0.323
+PCR+CT/Full                   +0.43   0.025   1.000    0.223   0.419
+PCR+CT/NBER_exp               +0.35   0.031   1.000    0.223   0.478
+PCR+raw/Full                  +0.23   0.033   1.000    0.223   0.487
+LASSO+CT/Full                 +0.51   0.034   1.000    0.223   0.496
+LASSO+CT/NBER_exp             +0.47   0.041   1.000    0.223   0.537
+Ridge+CT/Full                 +0.36   0.047   1.000    0.225   0.565
+
+Bonferroni 5% threshold (m=72): 0.00069
+Smallest raw p among the 8: 0.008 (Mean+CT full)
+Survivors after Holm (FWER 5%): 0
+Survivors after BH (FDR 5%):   0
+Survivors after Romano-Wolf:   0
+
+Robustness: full-sample-only family m=24 -> Bonferroni threshold 0.00208; min p 0.008 fails
+Saved: ['fig5_varimportance.png', 'fig2_overfitting_gap.png', 'fig1_model_comparison.png']
+=== Enhanced Table 4.1 (verify vs paper: OLS SR 56.06, PCR 59.19, Ridge 58.54, HA 59.97) ===
+         Model  R2_OOS  CW_p  SuccessRatio_pct  PT_p
+           OLS  -12.68 0.270             56.06 0.014
+           PLS   -5.19 0.275             55.54 0.091
+           PCR    0.23 0.033             59.19 0.001
+         LASSO   -1.37 0.212             58.67 0.030
+          ENet   -1.42 0.226             58.54 0.019
+          GBRT  -14.45 0.129             58.02 0.274
+            RF   -7.17 0.447             58.15 0.223
+           NN1  -12.88 0.915             58.28 0.178
+           NN2   -5.02 0.612             58.54 0.121
+           NN3  -17.33 0.144             54.50 0.689
+           NN4  -10.85 0.436             56.98 0.454
+           NN5  -35.77 0.810             58.93 0.169
+         Ridge   -1.18 0.180             58.54 0.055
+           SVR  -41.60 0.577             41.72 0.863
+           KNR  -17.19 0.341             54.37 0.069
+           XGB  -34.95 0.261             55.41 0.212
+          Mean   -1.58 0.271             58.02 0.080
+        Median   -1.03 0.389             58.93 0.101
+HA (benchmark)    0.00   NaN             59.97   NaN
+
+Saved: fig3_crash_robustness.png (8 cells), fig4_cssed.png
