@@ -1,0 +1,16 @@
+# Legacy / "matched" environment that reproduces Xu & Liu's published run.
+# Use this to regenerate the Matched_py3810_xgb176 column of data/version_sensitivity.csv:
+#     python3.8 -m venv .venv-legacy && source .venv-legacy/bin/activate
+#     pip install -r requirements_legacy.txt
+#     python code/replicate_xu_liu.py     # detects legacy libs -> writes the Matched column
+#
+# Python 3.8.10
+scikit-learn==1.3.2
+xgboost==1.7.6
+numpy==1.24.4
+pandas==2.0.3
+scipy==1.10.1
+openpyxl==3.1.5
+# neural nets only
+torch==2.0.1
+skorch==0.15.0

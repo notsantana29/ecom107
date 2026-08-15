@@ -29,19 +29,6 @@ the extension scripts -> result CSVs in `results/` -> the figure generators -> t
 
 ## Library versions
 
-The model forecasts used here are Xu & Liu's own reproduced numbers (read from `data/`)
-Tresults do not depend on your installed library versions
-This code does not switch versions at runtime
-
-The one version-dependent exhibit is the library-robustness check in `data/version_sensitivity.csv`, which lists each model's out-of-sample R^2 under three settings:
-
-- `Published`             -> Xu & Liu's published values
-- `Matched_py3810_xgb176` -> legacy environment: Python 3.8.10, scikit-learn 1.3.2, XGBoost 1.7.6
-- `Modern_py314_xgb320`   -> current environment: Python 3.14, scikit-learn 1.8, XGBoost 3.2
-
-Those columns were produced by installing each environment separately and re-running the model-training
-code, then recording the numbers into this file. `generate_figures.py` reads it.
-
 Legacy environment:
 - Python 3.8.10
 - numpy 1.24.4
@@ -65,8 +52,6 @@ Current environment:
 - statsmodels 0.14.6
 - matplotlib 3.10.8
 - openpyxl 3.1.5
-
-statsmodels and matplotlib appear only in the current environment; the legacy environment is used solely to reproduce Xu & Liu's model forecasts.
 
 ## Source
 
